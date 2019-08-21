@@ -7,14 +7,14 @@ services:
         context: ./app
         dockerfile: Dockerfile
      restart: always
-     image: vertenti/petshop-pipeline
-     container_name: 'app-pipeline'
+     image: vertenti/petshop
+     container_name: 'app-petshop'
      ports:
         - "8013:80" #Porta mapeada no proxy reverso
         - "4444:443"
      volumes:
-       - /var/www/docker/vertenti-pipiline/app:/var/www/html/petshop.com.br
-       - /var/www/docker/vertenti-pipiline/apache/logs:/var/log/apache2
+       - /var/www/docker/petshop-docker/app:/var/www/html/petshop.com.br
+       - /var/www/docker/petshop-docker/apache/logs:/var/log/apache2
      environment:
         - APPLICATION_ENV=development
      links:
@@ -23,13 +23,13 @@ services:
    database:
      image: mysql:5.7
      restart: always
-     container_name: 'mysql-pipeline'
+     container_name: 'mysql-petshop'
      command: mysqld --sql_mode="" --character-set-server=utf8 --collation-server=utf8_unicode_ci --init-connect='SET NAMES UTF8;'
      volumes:
-        - /var/www/docker/vertenti-pipiline/db/conf.d:/etc/mysql/conf.d
-        - /var/www/docker/vertenti-pipiline/db/mysql.conf.d:/etc/mysql/mysql.conf.d
-        - /var/www/docker/vertenti-pipiline/db/data:/var/lib/mysql
-        - /var/www/docker/vertenti-pipiline/db/log:/var/log/
+        - /var/www/docker/petshop-docker/db/conf.d:/etc/mysql/conf.d
+        - /var/www/docker/petshop-docker/db/mysql.conf.d:/etc/mysql/mysql.conf.d
+        - /var/www/docker/petshop-docker/db/data:/var/lib/mysql
+        - /var/www/docker/petshop-docker/db/log:/var/log/
      environment:
         MYSQL_ROOT_PASSWORD: 12345678
         MYSQL_DATABASE: petshop
