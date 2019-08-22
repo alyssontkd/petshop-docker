@@ -37,7 +37,7 @@ yes | cp -av /tmp/src/actions/configs/config.php ${app_dir}/classes
 
 echo "[ ****************** ] Importing data in database before ending buinid of Application"
 #Realiza a carga da base de dados
-mysql -u root -h mysql-pipeline -p12345678 < ${script_banco}
+mysql -u root -h mysql-petshop -p12345678 < ${script_banco}
 
 echo "[ ****************** ] Ending Endpoint of Application"
 cd ${app_dir}
